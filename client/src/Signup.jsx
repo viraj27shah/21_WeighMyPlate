@@ -46,7 +46,7 @@ function Signup() {
     }
 
     const navStyle = {
-        backgroundColor: '#e3f2fd',
+        backgroundColor: '#c0e9ad',
     }
     
 

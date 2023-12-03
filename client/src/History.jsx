@@ -2,6 +2,7 @@ import React from 'react';
 import { useState,useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import Linegraph from './Linegraph';
+import PieChart from './PieChart';
 
 function History() {
     let API_ROUTE = "http://localhost:3080/";
@@ -71,7 +72,7 @@ function History() {
     };
 
     const navStyle = {
-        backgroundColor: '#e3f2fd',
+        backgroundColor: '#c0e9ad',
     }
    
     const showHideLineGraph = () => {
@@ -81,7 +82,12 @@ function History() {
             setLineGraph(true);
     };
 
-    const lineGraphData = result ? result.historyData.map(item => Math.round(item.total_cal * 100) / 100) : [];
+    const lineGraphData = result
+  ? result.historyData.map(item => ({
+      date: item.date.substring(0,10), 
+      totalCal: Math.round(item.total_cal * 100) / 100,
+    }))
+  : [];
 
     return (
         <div>
@@ -106,15 +112,16 @@ function History() {
                 {result.historyData.map((item, index) => (
                 <div className="my-card" key={index}>
                     <div className="my-image-section">
-                        <img src={`${API_ROUTE}${item.image_path && item.image_path.substring(1)}`} alt={`Image ${index}`} />
+                        <img src={`${API_ROUTE}${item.image_path && item.image_path.substring(1)}` } alt={`Image ${index}`} className="imageRound"/>
                     </div>
                     <div className="data-section">
                         
                         <h2>Date : {item.date.substring(0,10)}</h2>
                         <h2>Total Calorie : {Math.round(item.total_cal*100)/100}</h2>
-                        {item.food.map((line, i) => (
+                        {/* {item.food.map((line, i) => (
                             <p key={i}>{line.food_name} : {Math.round(line.cal*100)/100}</p>
-                        ))}
+                        ))} */}
+                        <PieChart item={item}/>
                     </div>
                 </div>
                 ))}

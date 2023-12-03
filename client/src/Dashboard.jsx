@@ -180,7 +180,7 @@ function Dashboard({ userInfo, updateUser }) {
 
 
     const navStyle = {
-        backgroundColor: '#e3f2fd',
+        backgroundColor: '#c0e9ad',
     }
     const cStyle = {
         backgroundColor: '#F0E68C',
@@ -257,7 +257,7 @@ function Dashboard({ userInfo, updateUser }) {
                         s{spinner && <Spiner/>}
                         {result && <div className="my-card">
                             <div className="my-image-section">
-                                <img src={`${API_ROUTE}${result.resoponseToSend && result.resoponseToSend.image && result.resoponseToSend.image.substring(1)}`} alt={`Image`} />
+                                <img src={`${API_ROUTE}${result.resoponseToSend && result.resoponseToSend.image && result.resoponseToSend.image.substring(1)}`} alt={`Image`} className="imageRound" />
                             </div>
                             <div className="data-section">
                                 

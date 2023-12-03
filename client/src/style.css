@@ -89,31 +89,35 @@ body {
     }
     
     .my-card {
-      width: calc(100% - 60px); 
+      width: calc(100% - 120px); 
       margin: 20px 0; /* Margin between cards */
       /* border: 1px solid #000000; */
-      border-radius: 10px; /* Rounded corners */
+      border-radius: 30px; /* Rounded corners */
       overflow: hidden;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       display: flex;
     }
+
+    .imageRound{
+      border-radius: 15%;
+    }
     
     .my-image-section {
       width: 40%; /* 33% for the image section */
-      background-color: #e3f2fd;
+      background-color: #424970;
       border: 1px solid #000000;
     }
     
     .my-image-section img {
       width: 100%;
       height: 100%;
-      padding: 20px;
+      padding: 40px;
     }
     
     .data-section {
       width: 67%;
       padding: 16px;
-      background-color: #e3f2fd;
+      background-color: rgb(192, 233, 173);
       border: 1px solid #000000;
     }
     
@@ -189,7 +193,7 @@ body {
       display: flex; 
       flex-direction: column;
       align-items: center; 
-      background-color: white;
+      background-color: #ffffff;
       height: 500px;
       width: 70%;
     }

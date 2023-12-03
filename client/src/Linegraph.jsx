@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
+import 'chartjs-adapter-date-fns';
 
 const Linegraph = ({ data }) => {
     const chartRef = useRef(null);
@@ -7,24 +8,23 @@ const Linegraph = ({ data }) => {
 
     useEffect(() => {
         if (data.length > 0 && chartRef.current) {
-            // Check if there's an existing chart instance
             if (chartInstance.current) {
-                // If a chart instance exists, destroy it before creating a new one
                 chartInstance.current.destroy();
             }
 
             const myChartRef = chartRef.current.getContext("2d");
 
-            // Create the line chart
+            // Extract dates and totalCal from the data
+            const labels = data.map(item => item.date); // Assuming 'date' is the property name containing the date information
+            const totalCalories = [...data.map(item => item.totalCal)]; // Adding 0 at the beginning
+
             chartInstance.current = new Chart(myChartRef, {
                 type: 'line',
                 data: {
-                    labels: data.map((_, index) => `Data Point ${index + 1}`),
+                    labels: labels,
                     datasets: [{
                         label: 'Total Calorie',
-                        data: data,
-                        // backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        // borderColor: 'rgba(75, 192, 192, 1)',
+                        data: totalCalories,
                         borderWidth: 2,
                         pointRadius: 4,
                         pointHoverRadius: 6,
@@ -42,6 +42,7 @@ const Linegraph = ({ data }) => {
                             }
                         },
                         x: {
+                            type: 'category',
                             title: {
                                 display: true,
                                 text: 'Dates'
@@ -55,9 +56,9 @@ const Linegraph = ({ data }) => {
 
     return (
         <div className="lineGraphMainContainer">
-          <div className="lineGraphContainer"> 
-              <canvas id="myChart" ref={chartRef} />
-          </div>
+            <div className="lineGraphContainer">
+                <canvas id="myChart" ref={chartRef} />
+            </div>
         </div>
     );
 };
